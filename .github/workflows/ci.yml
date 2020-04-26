@@ -20,11 +20,6 @@ jobs:
         with:
           go-version: ${{ matrix.go }}
 
-      - name: Setup MSYS2
-        uses: numworks/setup-msys2@v1
-        with:
-          update: true
-
       - name: Install deps
         shell: bash
         run: |
