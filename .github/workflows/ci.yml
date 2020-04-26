@@ -24,7 +24,7 @@ jobs:
         uses: numworks/setup-msys2@v1
         with:
           update: true
-          msystem: MSYS
+#          msystem: MSYS
 
       - name: Install deps
         run: |
@@ -38,7 +38,7 @@ jobs:
           msys2do pacman -Q imagemagick
           msys2do pacman -Ql imagemagick
           msys2do pacman -Qk imagemagick
-          dir /b /s C:\ | findstr pkgconfig
+          dir D:/a/_temp/msys/msys64/usr
           set PKG_CONFIG_PATH=/mingw64/usr/lib/pkgconfig
           pkg-config --cflags --libs MagickWand
 
