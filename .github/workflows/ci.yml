@@ -26,8 +26,8 @@ jobs:
           msys2do pacman -S --noconfirm --needed mingw-w64-x86_64-toolchain
           msys2do pacman -S --noconfirm mingw-w64-x86_64-pkg-config mingw-w64-x86_64-imagemagick mingw-w64-x86_64-gcc
           echo "Done installing deps"
-          where gcc
-          where pkg-config
+          which gcc
+          which pkg-config
           dir C:/Temp/gcc/msys64/mingw64/lib/pkgconfig
           set PKG_CONFIG_PATH=/mingw64/usr/lib/pkgconfig
 
