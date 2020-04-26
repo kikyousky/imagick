@@ -26,8 +26,8 @@ jobs:
           msys2do pacman -S --noconfirm --needed mingw-w64-x86_64-toolchain
           msys2do pacman -S --noconfirm mingw-w64-x86_64-pkg-config mingw-w64-x86_64-imagemagick mingw-w64-x86_64-gcc
           echo "Done installing deps"
-          cd D:/a/_temp
-          tree
+          tree D:/a/_temp/msys64/mingw64/lib/pkgconfig
+          set PKG_CONFIG_PATH=D:/a/_temp/msys64/mingw64/lib/pkgconfig
 
       - name: Setup go
         uses: actions/setup-go@v1
