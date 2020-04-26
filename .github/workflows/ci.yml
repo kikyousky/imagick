@@ -38,7 +38,8 @@ jobs:
           msys2do pacman -Q imagemagick
           msys2do pacman -Ql imagemagick
           msys2do pacman -Qk imagemagick
-          dir D:/a/_temp/msys/msys64/usr
+          dir D:/a/_temp/msys/msys64/usr/lib/pkgconfig
+          dir C:/msys64
           set PKG_CONFIG_PATH=/mingw64/usr/lib/pkgconfig
           pkg-config --cflags --libs MagickWand
 
