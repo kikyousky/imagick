@@ -33,7 +33,6 @@ jobs:
           $msys2 pacman -S --noconfirm mingw-w64-x86_64-pkg-config
           $msys2 pacman -S --noconfirm mingw-w64-x86_64-imagemagick
           $msys2 pacman -S --noconfirm mingw-w64-x86_64-gcc
-          taskkill //IM gpg-agent.exe //F  # https://travis-ci.community/t/4967
           export PATH=/C/tools/msys64/mingw64/bin:$PATH
           export PKG_CONFIG_PATH=/C/tools/msys64/mingw64/lib/pkgconfig
           export MAKE=mingw32-make  # so that Autotools can find it
