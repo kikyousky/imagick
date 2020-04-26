@@ -36,8 +36,8 @@ jobs:
           #msys2do pacman -Sy mingw-w64-x86_64-gcc
           echo "Done installing deps"
           env
-          dir C:/
-          dir D:/
+          dir C:/tools/
+          dir C:/Temp/
           set PKG_CONFIG_PATH=/mingw64/usr/lib/pkgconfig
           pkg-config --cflags --libs MagickWand
 
