@@ -27,7 +27,6 @@ jobs:
 #          msystem: MSYS
 
       - name: Install deps
-        shell: msys2
         run: |
           msys2do makepkg-mingw -sCLfc --noconfirm --noprogressbar
           msys2do pacman -Sy --needed mingw-w64-x86_64-toolchain
