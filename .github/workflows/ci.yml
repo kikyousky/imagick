@@ -15,11 +15,6 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Setup go
-        uses: actions/setup-go@v1
-        with:
-          go-version: ${{ matrix.go }}
-
       - name: Setup MSYS2
         uses: numworks/setup-msys2@v1
         with:
@@ -31,9 +26,14 @@ jobs:
           msys2do pacman -S --noconfirm --needed mingw-w64-x86_64-toolchain
           msys2do pacman -S --noconfirm mingw-w64-x86_64-pkg-config mingw-w64-x86_64-imagemagick mingw-w64-x86_64-gcc
           echo "Done installing deps"
-          dir C:/Temp
-          dir /b /s D:/a
+          dir /b /s C:"/Temp"
+          dir /b /s D:"/a"
           set PKG_CONFIG_PATH=/mingw64/usr/lib/pkgconfig
+
+      - name: Setup go
+        uses: actions/setup-go@v1
+        with:
+          go-version: ${{ matrix.go }}
 
       - name: Test
         run: go test -v ./...
