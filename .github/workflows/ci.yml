@@ -20,23 +20,37 @@ jobs:
         with:
           go-version: ${{ matrix.go }}
 
+      - name: Setup MSYS2
+        uses: numworks/setup-msys2@v1
+        with:
+          update: true
+
       - name: Install deps
-        shell: bash
         run: |
-          choco upgrade --no-progress -y msys2
-          export msys2='cmd //C RefreshEnv.cmd '
-          export msys2+='& set MSYS=winsymlinks:nativestrict '
-          export msys2+='& C:\\tools\\msys64\\msys2_shell.cmd -defterm -no-start'
-          export mingw64="$msys2 -mingw64 -full-path -here -c "\"\$@"\" --"
-          export msys2+=" -msys2 -c "\"\$@"\" --"
-          $msys2 pacman --sync --noconfirm --needed mingw-w64-x86_64-toolchain
-          $msys2 pacman -S --noconfirm mingw-w64-x86_64-pkg-config
-          $msys2 pacman -S --noconfirm mingw-w64-x86_64-imagemagick
-          $msys2 pacman -S --noconfirm mingw-w64-x86_64-gcc
-          export PATH=/C/tools/msys64/mingw64/bin:$PATH
-          export PKG_CONFIG_PATH=/C/tools/msys64/mingw64/lib/pkgconfig
-          export MAKE=mingw32-make  # so that Autotools can find it
-          pkg-config --cflags --libs MagickWand
+          msys2do makepkg-mingw -sCLfc --noconfirm --noprogressbar
+          msys2do pacman -Sy --needed mingw-w64-x86_64-toolchain
+          msys2do pacman -Sy mingw-w64-x86_64-pkg-config mingw-w64-x86_64-imagemagick mingw-w64-x86_64-gcc
+          echo "Done installing deps"
+#          set PKG_CONFIG_PATH=/mingw64/usr/lib/pkgconfig
+          msys2do pkg-config --cflags --libs MagickWand
+
+#      - name: Install deps
+#        shell: bash
+#        run: |
+#          choco upgrade --no-progress -y msys2
+#          export msys2='cmd //C RefreshEnv.cmd '
+#          export msys2+='& set MSYS=winsymlinks:nativestrict '
+#          export msys2+='& C:\\tools\\msys64\\msys2_shell.cmd -defterm -no-start'
+#          export mingw64="$msys2 -mingw64 -full-path -here -c "\"\$@"\" --"
+#          export msys2+=" -msys2 -c "\"\$@"\" --"
+#          $msys2 pacman --sync --noconfirm --needed mingw-w64-x86_64-toolchain
+#          $msys2 pacman -S --noconfirm mingw-w64-x86_64-pkg-config
+#          $msys2 pacman -S --noconfirm mingw-w64-x86_64-imagemagick
+#          $msys2 pacman -S --noconfirm mingw-w64-x86_64-gcc
+#          export PATH=/C/tools/msys64/mingw64/bin:$PATH
+#          export PKG_CONFIG_PATH=/C/tools/msys64/mingw64/lib/pkgconfig
+#          export MAKE=mingw32-make  # so that Autotools can find it
+#          pkg-config --cflags --libs MagickWand
 
       - name: Test
         run: go test -v ./...
