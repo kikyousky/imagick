@@ -35,9 +35,10 @@ jobs:
           msys2do pacman --noconfirm -S mingw-w64-x86_64-imagemagick
           #msys2do pacman --noconfirm -S mingw-w64-x86_64-gcc
           echo "Done installing deps"
+          dir
+          env
           pkg-config --cflags --libs MagickWand
-          ls /mingw64/lib/
-          export PKG_CONFIG_PATH=/mingw64/lib/pkgconfig
+          set PKG_CONFIG_PATH=/mingw64/lib/pkgconfig
 
       - name: Test
         run: go test -v ./...
