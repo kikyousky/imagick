@@ -28,10 +28,11 @@ jobs:
       - name: Install deps
         run: |
           msys2do makepkg-mingw -sCLfc --noconfirm --noprogressbar
-          msys2do pacman -Sy --needed mingw-w64-x86_64-toolchain
-          msys2do pacman -Sy mingw-w64-x86_64-pkg-config mingw-w64-x86_64-imagemagick mingw-w64-x86_64-gcc
+          msys2do pacman -S --noconfirm --needed mingw-w64-x86_64-toolchain
+          msys2do pacman -S --noconfirm mingw-w64-x86_64-pkg-config mingw-w64-x86_64-imagemagick mingw-w64-x86_64-gcc
           echo "Done installing deps"
-          dir C:\ D:\
+          dir C:/
+          dir D:/
           set PKG_CONFIG_PATH=/mingw64/usr/lib/pkgconfig
 
       - name: Test
