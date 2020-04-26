@@ -29,16 +29,15 @@ jobs:
       - name: Install deps
         run: |
           msys2do makepkg-mingw -sCLfc --noconfirm --noprogressbar
-          msys2do pacman --sync --noconfirm --needed mingw-w64-x86_64-toolchain
-          #msys2do pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
-          #msys2do pacman --noconfirm -S mingw-w64-x86_64-pkg-config
-          msys2do pacman --noconfirm -S mingw-w64-x86_64-imagemagick
-          #msys2do pacman --noconfirm -S mingw-w64-x86_64-gcc
+          msys2do pacman -Sy --needed mingw-w64-x86_64-toolchain
+          #msys2do pacman -Uy mingw-w64-*-any.pkg.tar.xz
+          #msys2do pacman -Sy mingw-w64-x86_64-pkg-config
+          msys2do pacman -Sy mingw-w64-x86_64-imagemagick
+          #msys2do pacman -Sy mingw-w64-x86_64-gcc
           echo "Done installing deps"
-          dir
-          env
-          pkg-config --cflags --libs MagickWand
+          msys2do pacman -Ql mingw-w64-x86_64-imagemagick
           set PKG_CONFIG_PATH=/mingw64/lib/pkgconfig
+          pkg-config --cflags --libs MagickWand
 
       - name: Test
         run: go test -v ./...
