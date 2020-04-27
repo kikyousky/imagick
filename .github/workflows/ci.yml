@@ -6,7 +6,7 @@ jobs:
     name: Test go-${{ matrix.go }} on ${{ matrix.os }}
     strategy:
       matrix:
-        go: [1.14.x]
+        go: [1.14.2]
         os: [windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
@@ -22,14 +22,11 @@ jobs:
 
       - name: Install deps
         run: |
-          msys2do makepkg-mingw -sCLfc --noconfirm --noprogressbar
           msys2do pacman -S --noconfirm --needed base-devel mingw-w64-x86_64-toolchain
           msys2do pacman -S --noconfirm mingw-w64-x86_64-pkg-config mingw-w64-x86_64-imagemagick
-          set PKG_CONFIG_PATH=D:/a/_temp/msys64/mingw64/lib/pkgconfig
-          which go
-          msys2do env
+          echo 'export PATH=/c/Go1.14.2/bin:$PATH' >> ~/.bashrc
+          msys2do go env
           msys2do pkg-config --cflags --libs MagickWand
-          pkg-config --cflags --libs MagickWand
 
       - name: Setup go
         uses: actions/setup-go@v1
@@ -37,5 +34,5 @@ jobs:
           go-version: ${{ matrix.go }}
 
       - name: Test
-        run: go test -v ./...
+        run: msysdo go test -v ./...
 
