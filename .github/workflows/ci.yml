@@ -33,5 +33,5 @@ jobs:
           msys2do pkg-config --cflags --libs MagickWand
 
       - name: Test
-        run: msys2do /c/Go${{ matrix.go }}/bin/go test -v ./...
+        run: msys2do MAGICK_DEBUG=All /c/Go${{ matrix.go }}/bin/go test -v ./...
 
