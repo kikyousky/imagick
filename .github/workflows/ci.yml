@@ -23,10 +23,13 @@ jobs:
       - name: Install deps
         run: |
           msys2do makepkg-mingw -sCLfc --noconfirm --noprogressbar
-          msys2do pacman -S --noconfirm --needed mingw-w64-x86_64-toolchain
+          msys2do pacman -S --noconfirm --needed base-devel mingw-w64-x86_64-toolchain
           msys2do pacman -S --noconfirm mingw-w64-x86_64-pkg-config mingw-w64-x86_64-imagemagick
           set PKG_CONFIG_PATH=D:/a/_temp/msys64/mingw64/lib/pkgconfig
           dir "D:\a\_temp\msys64\mingw64\lib\pkgconfig"
+          which go
+          msys2do env
+          msys2do pkg-config --cflags --libs MagickWand
           pkg-config --cflags --libs MagickWand
 
       - name: Setup go
