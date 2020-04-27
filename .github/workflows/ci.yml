@@ -29,8 +29,8 @@ jobs:
         run: |
           msys2do pacman -S --noconfirm --needed base-devel mingw-w64-x86_64-toolchain
           msys2do pacman -S --noconfirm mingw-w64-x86_64-pkg-config mingw-w64-x86_64-imagemagick
-          echo 'export PATH=/c/Go${{ matrix.go }}/bin:$PATH' >> ~/.bashrc
-          cat ~/.bashrc
+          msys2do echo "export PATH=/c/Go${{ matrix.go }}/bin:$PATH" >> ~/.bashrc
+          msys2do cat ~/.bashrc
           msys2do go env
           msys2do pkg-config --cflags --libs MagickWand
 
