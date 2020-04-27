@@ -31,8 +31,11 @@ jobs:
           msys2do pacman -S --noconfirm mingw-w64-x86_64-pkg-config mingw-w64-x86_64-imagemagick
           msys2do /c/Go${{ matrix.go }}/bin/go env
           msys2do pkg-config --cflags --libs MagickWand
-          msys2do find /d/a/ -name policy.xml
+          msys2do find /d/a/_temp/msys/msys64/mingw64/etc/ImageMagick-7
 
       - name: Test
-        run: msys2do MAGICK_DEBUG=All /c/Go${{ matrix.go }}/bin/go test -v ./...
+        run: msys2do \
+          MAGICK_CONFIGURE_PATH=/d/a/_temp/msys/msys64/mingw64/etc/ImageMagick-7 \
+          MAGICK_DEBUG=All \
+          /c/Go${{ matrix.go }}/bin/go test -v ./...
 
