@@ -29,11 +29,9 @@ jobs:
         run: |
           msys2do pacman -S --noconfirm --needed base-devel mingw-w64-x86_64-toolchain
           msys2do pacman -S --noconfirm mingw-w64-x86_64-pkg-config mingw-w64-x86_64-imagemagick
-          msys2do echo "export PATH=/c/Go${{ matrix.go }}/bin:$PATH" >> ~/.bashrc
-          msys2do cat ~/.bashrc
-          msys2do go env
+          msys2do /c/Go${{ matrix.go }}/bin/go env
           msys2do pkg-config --cflags --libs MagickWand
 
       - name: Test
-        run: msys2do go test -v ./...
+        run: msys2do /c/Go${{ matrix.go }}/bin/go test -v ./...
 
