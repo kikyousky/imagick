@@ -396,3 +396,20 @@ func TestPixelInterfaceToPtr(t *testing.T) {
 		t.Fatal("Expected error when passing invalid type")
 	}
 }
+
+func TestGetChannleStatistics(t *testing.T) {
+	Initialize()
+	defer func(t *testing.T) {
+		checkGC(t)
+	}(t)
+	defer Terminate()
+
+	mw := NewMagickWand()
+
+	mw.ReadImage(`logo:`)
+
+	// Read a valid blob
+
+	css := mw.GetChannelStatistics()
+	fmt.Println(css)
+}

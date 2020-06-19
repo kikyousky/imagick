@@ -510,3 +510,10 @@ func (mw *MagickWand) SetType(itype ImageType) error {
 	ok := C.MagickSetType(mw.mw, C.ImageType(itype))
 	return mw.getLastErrorIfFailed(ok)
 }
+
+func (mw *MagickWand) GetChannelStatistics() []ChannelStatistics {
+	cs := C.MagickGetImageStatistics(mw.mw)
+	runtime.KeepAlive(mw)
+	defer relinquishMemory(unsafe.Pointer(cs))
+	return cChannelStatisticsArrayToSlice(cs)
+}
