@@ -58,7 +58,7 @@ func cChannelStatisticsArrayToSlice(p *C.ChannelStatistics) []ChannelStatistics 
 	for i := 0; i < C.MaxPixelChannels; i++ {
 		p = (*C.ChannelStatistics)(unsafe.Pointer(q))
 		css = append(css, *newChannelStatistics(p))
-		q += unsafe.Sizeof(q)
+		q += unsafe.Sizeof(*p)
 	}
 	return css
 }
