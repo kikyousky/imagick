@@ -32,3 +32,30 @@ const (
 	CHANNELS_SYNC      ChannelType = C.SyncChannels
 	CHANNELS_DEFAULT   ChannelType = C.DefaultChannels
 )
+
+type PixelChannelType int
+
+const (
+	PIXEL_CHANNEL_UNDEFINED     PixelChannelType = C.UndefinedPixelChannel
+	PIXEL_CHANNEL_RED           PixelChannelType = C.RedPixelChannel
+	PIXEL_CHANNEL_CYAN          PixelChannelType = C.CyanPixelChannel
+	PIXEL_CHANNEL_GRAY          PixelChannelType = C.GrayPixelChannel
+	PIXEL_CHANNEL_L             PixelChannelType = C.LPixelChannel
+	PIXEL_CHANNEL_LABEL         PixelChannelType = C.LabelPixelChannel
+	PIXEL_CHANNEL_Y             PixelChannelType = C.YPixelChannel
+	PIXEL_CHANNEL_A             PixelChannelType = C.aPixelChannel
+	PIXEL_CHANNEL_GREEN         PixelChannelType = C.GreenPixelChannel
+	PIXEL_CHANNEL_MAGENTA       PixelChannelType = C.MagentaPixelChannel
+	PIXEL_CHANNEL_CB            PixelChannelType = C.CbPixelChannel
+	PIXEL_CHANNEL_B             PixelChannelType = C.bPixelChannel
+	PIXEL_CHANNEL_BLUE          PixelChannelType = C.BluePixelChannel
+	PIXEL_CHANNEL_YELLOW        PixelChannelType = C.YellowPixelChannel
+	PIXEL_CHANNEL_CR            PixelChannelType = C.CrPixelChannel
+	PIXEL_CHANNEL_BLACK         PixelChannelType = C.BlackPixelChannel
+	PIXEL_CHANNEL_ALPHA         PixelChannelType = C.AlphaPixelChannel
+	PIXEL_CHANNEL_INDEX         PixelChannelType = C.IndexPixelChannel
+	PIXEL_CHANNEL_READMASK      PixelChannelType = C.ReadMaskPixelChannel
+	PIXEL_CHANNEL_WRITEMASK     PixelChannelType = C.WriteMaskPixelChannel
+	PIXEL_CHANNEL_META          PixelChannelType = C.MetaPixelChannel
+	PIXEL_CHANNEL_COMPOSITEMASK PixelChannelType = C.CompositeMaskPixelChannel
+)
